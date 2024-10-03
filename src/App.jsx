@@ -1,8 +1,5 @@
 import "./App.css";
 import "./configs/firebaseConfig.js";
-import { useEffect } from "react";
-
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 import { AppShell, Group, Burger, Skeleton } from "@mantine/core";
 import { MantineLogo } from "@mantinex/mantine-logo";
@@ -13,26 +10,6 @@ import { Outlet } from "react-router-dom";
 function App() {
   const [mobileOpened, { toggle: toggleMobile }] = useDisclosure();
   const [desktopOpened, { toggle: toggleDesktop }] = useDisclosure(true);
-  const auth = getAuth();
-
-  function createUser(auth, { email, password }) {
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed up
-        const user = userCredential.user;
-        console.log(user);
-        // ...
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
-        // ..
-      });
-  }
-
-  useEffect(() => {
-  }, []);
 
   return (
     <AppShell
