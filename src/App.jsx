@@ -1,17 +1,12 @@
 import "./App.css";
-import "./configs/firebaseConfig.js";
 
-import { getAuth } from "firebase/auth";
-
-import { AppShell, Group, Burger, Skeleton, Container } from "@mantine/core";
+import { AppShell, Group, Burger, Skeleton } from "@mantine/core";
 import { MantineLogo } from "@mantinex/mantine-logo";
 import { useDisclosure } from "@mantine/hooks";
 
 import { Outlet } from "react-router-dom";
 
 function App() {
-  const auth = getAuth();
-
   const [mobileOpened, { toggle: toggleMobile }] = useDisclosure();
   const [desktopOpened, { toggle: toggleDesktop }] = useDisclosure(true);
 
@@ -20,7 +15,7 @@ function App() {
       padding={""}
       header={{ height: 60 }}
       navbar={{
-        width: 300,
+        width: { sm: 200, md: 250 },
         breakpoint: "sm",
         collapsed: { mobile: !mobileOpened, desktop: !desktopOpened },
       }}

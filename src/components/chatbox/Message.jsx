@@ -5,7 +5,7 @@ import MessageCard from "../cards/MessageCard";
 export default function Message({ flex, avatar, message }) {
   return (
     <Flex
-      py="md"
+      pt="sm"
       justify={flex.justify}
       align="end"
       gap={16}

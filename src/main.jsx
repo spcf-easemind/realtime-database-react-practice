@@ -11,7 +11,7 @@ import router from "./router/index.jsx";
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <MantineProvider>
-      <RouterProvider router={router}/>
+      <RouterProvider router={router} />
     </MantineProvider>
   </StrictMode>
 );

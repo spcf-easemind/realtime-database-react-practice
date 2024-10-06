@@ -22,21 +22,13 @@ import {
 
 import { useForm } from "@mantine/form";
 
+import { auth } from "../configs/firebaseConfig";
+
 import Message from "../components/chatbox/Message";
 
 const data = [
   {
-    avatar:
-      "https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/avatars/avatar-9.png",
-    name: "Robert Wolfkisser",
-    job: "Engineer",
-    email: "rob_wolf@gmail.com",
-    role: "Collaborator",
-    lastActive: "2 days ago",
-    active: true,
-    message: "I am fine, how about you?",
-  },
-  {
+    id: 1,
     avatar:
       "https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/avatars/avatar-6.png",
     name: "Jill Jailbreaker",
@@ -47,11 +39,26 @@ const data = [
     active: true,
     message: "Hello, how are you?",
   },
+  {
+    id: 2,
+    avatar:
+      "https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/avatars/avatar-9.png",
+    name: "Robert Wolfkisser",
+    job: "Engineer",
+    email: "rob_wolf@gmail.com",
+    role: "Collaborator",
+    lastActive: "2 days ago",
+    active: true,
+    message: "I am fine, how about you?",
+  },
 ];
 
 export default function ChatBox() {
   const scrollViewport = useRef(null); // Create a reference for the ScrollArea
   const [chatMessage, setChatMessage] = useState(data);
+  const [user, setUser] = useState(data[0].name);
+
+  console.log(auth);
 
   const form = useForm({
     mode: "uncontrolled",
@@ -89,15 +96,15 @@ export default function ChatBox() {
     scrollToBottom();
   }
 
-  const messageInstances = chatMessage.map((item, index) => {
-    const flex =
-      index % 2 === 1
+  const messageInstances = chatMessage.map((item) => {
+    const flexPosition =
+      item.name === user
         ? { justify: "start", direction: "row" }
         : { justify: "end", direction: "row-reverse" };
     return (
       <Message
-        key={item.name}
-        flex={flex}
+        key={item.id}
+        flex={flexPosition}
         message={item.message}
         avatar={item.avatar}
       />
